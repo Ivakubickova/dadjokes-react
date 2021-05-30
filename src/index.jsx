@@ -2,7 +2,8 @@ import React, {useState } from 'react';
 import { render } from 'react-dom';
 import './style.css';
 
-
+import Joke from './Joke';
+import {jokes} from './jokes';
 
 
 
@@ -52,23 +53,28 @@ const Likes = () => {
 
   // }
 
-  const handleLikesChange = (event) => {
+  const handleLikesUpChange = (event) => {
       setLikes(event.target.value)
 
   }
+
+  const handleLikesDownChange = (event) => {
+    setLikes(event.target.value)
+
+}
 
   return (
     //<div className="joke__likes">
 <>
 
-      <button id="btn-up" className="btn-like btn-like--up" onClick={handleLikesChange}></button>
+      <button id="btn-up" className="btn-like btn-like--up" onClick={handleLikesUpChange}></button>
 
-      <span id="likes-up" className="likes-count likes-count--up" onClick={ () => setLikes(likes + 1) }> {likes} </span>
+      <span id="likes-up" className="likes-count likes-count--up" onClick={ () => setLikes(likes + 1 ) }> {likes} </span>
 
-      <button id="btn-down" className="btn-like btn-like--down"onClick={handleLikesChange}></button>
+      <button id="btn-down" className="btn-like btn-like--down"onClick={handleLikesDownChange}></button>
 
 
-      <span id="likes-down" className="likes-count likes-count--down" onClick={ () => setLikes(likes + 1) }>{likes}</span>
+      <span id="likes-down" className="likes-count likes-count--down" onClick={ () => setLikes(likes + 1) }>{likes} </span>
 
       </>
     //</div>
@@ -76,10 +82,29 @@ const Likes = () => {
 };
 
 
-const App = () => (
+
+
+const App = () => {
+  <>
+
   
   <div className="container">
+
+    { books.map( joke => <joke
+            key={joke.id}
+            id={joke.id}
+            avatar={joke.avatar}
+            name={joke.name}
+            text={joke.text}
+            likes={joke.likes}
+            dislikes={joke.dislikes}
+          /> )
+
+
+    }
+    
   <div className="joke">
+
   <div className="joke__body">
   <div className="joke__user">
   <JokerUser />
@@ -96,6 +121,7 @@ const App = () => (
   </div>
   </div>
   
-);
+  </>
+};
 
 render(<App />, document.querySelector('#app'));
