@@ -10,8 +10,8 @@ import './style.css';
   return (
   
     // <div className="joke__users">
-      <div className="user-avatar">
-      <img src="/img/user01.png"></img>
+      <div className="user-avatar" >
+     <img src="/img/user01.png" /> 
       
       <p className="user-name">Neroxx</p>
 
@@ -43,23 +43,32 @@ const Likes = () => {
 
   const [likes, setLikes] = useState(0);
 
-  const upLikes = () => {
-    setPocet(likes + 1);
-  }
+  // const upLikes = () => {
+  //   setPocet(likes + 1);
+  // }
 
-  const downLikes = () => {
-    setPocet(likes - 1);
+  // const downLikes = () => {
+  //   setPocet(likes + 1);
+
+  // }
+
+  const handleLikesChange = (event) => {
+      setLikes(event.target.value)
+
   }
 
   return (
     //<div className="joke__likes">
 <>
 
-      <button id="btn-up" className="btn-like btn-like--up" onClick={ upLikes }></button>
-      <button id="btn-down" className="btn-like btn-like--down"onClick={ downLikes }></button>
+      <button id="btn-up" className="btn-like btn-like--up" onClick={handleLikesChange}></button>
 
-      <span id="likes-up" className="likes-count likes-count--up" onClick={ () => setLikes(likes + 1) }>0</span>
-      <span id="likes-down" className="likes-count likes-count--down" onClick={ () => setLikes(likes - 1) }>0</span>
+      <span id="likes-up" className="likes-count likes-count--up" onClick={ () => setLikes(likes + 1) }> {likes} </span>
+
+      <button id="btn-down" className="btn-like btn-like--down"onClick={handleLikesChange}></button>
+
+
+      <span id="likes-down" className="likes-count likes-count--down" onClick={ () => setLikes(likes + 1) }>{likes}</span>
 
       </>
     //</div>
